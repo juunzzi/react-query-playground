@@ -4,6 +4,10 @@
 
 ## 🖐 궁금증 1 : 단순 re-render로 인한 useQuery 훅 재호출에는 refetch(network request)가 발생하지 않는가?
 
+### 커밋 및 개요
+
+[커밋은 요기](https://github.com/juunzzi/react-query-playground/commit/b60ed3cce3207c247ff9c99018b16dea30dab22b)
+
 다음 문장은 [이곳에서 발췌](https://github.com/TanStack/query/discussions/1685)
 
 > React-Query will smartly refetch stale queries in the background, e.g. if you focus the window or mount a new component that uses the query (=an observer). If you just have a todo list on the screen and re-render that a bunch of times, and you do that for 30 minutes or even the whole day, there won't be a refetch, even with staleTime of zero.
@@ -25,6 +29,11 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 즉, refetch 액션은 단순 re-render 상황에서는 트리거되지 않는다. 발생 조건이 따로 존재하는 듯 하다.
 
 ## 🖐 궁금증 2 : stale한 쿼리 refetch 액션의 트리거 조건은 무엇인가 !
+
+
+### 커밋 및 개요
+
+[커밋은 요기!](https://github.com/juunzzi/react-query-playground/commit/7dabdeec5778b6c802a3b7a0881b1d4f7f4675f7)
 
 궁금증 1을 탐구하면서 알게된 사실은 단순 re-render에는 stale time이 0으로 작성된 쿼리여도 refetch를 진행하지 않는다는 사실이다. 그럼 도대체 언제 refetch를 하는걸까?
 
@@ -63,6 +72,10 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
     refetchInterval을 3000으로 두어보니 3초에 한번씩 네트워크 요청이 새롭게 발생!
 
 ## 🖐 궁금증 3 : stale해진 쿼리의 refetch-rerender flow
+
+### 커밋 및 개요
+
+[커밋은 요기!](https://github.com/juunzzi/react-query-playground/commit/0bdebb02dde482c89e99d1b5c5cc298bc2c95a03)
 
 문서에 의하면 Caching Flow는 다음과 같다.
 
