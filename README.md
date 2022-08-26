@@ -68,7 +68,7 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 
 쿼리가 마운트 -> 네트워크 요청하여 데이터 렌더링 -> 쿼리 인스턴스 새로이 마운트 -> 구식 쿼리 데이터 렌더링 -> 네트워크 요청 -> 쿼리 데이터 업데이트(캐시 업데이트) -> 새로운 쿼리 데이터 렌더링
 
-즉 두번째 쿼리 마운트에는 refetch 과정에서 stale 한 데이터로 인한 렌더링, new 데이터로 인한 렌더링 두번이 발생한다.
+즉 두번째 쿼리 마운트에는 refetch 과정에서 stale 한 데이터로 인한 렌더링, new 데이터로 인한 렌더링 총 두 번의 렌더링이 발생한다.
 
 이 말이 사실인지를 검증한다. 위 주장은 [이곳에서 발췌](https://tanstack.com/query/v4/docs/guides/caching?from=reactQueryV3&original=https://react-query-v3.tanstack.com/guides/caching)
 
