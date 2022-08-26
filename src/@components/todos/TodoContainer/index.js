@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchTodoList } from "../../../hooks/todos";
 import Counter from "../../commons/Counter";
 import TodoList from "../TodoList";
@@ -15,6 +15,14 @@ const TodoContainer = () => {
   const down = () => {
     setCount((prev) => prev - 1);
   };
+
+  useEffect(() => {
+    console.log("TODOCONTAINER MOUNT");
+
+    return () => {
+      console.log("TODOCONTAINER UNMOUNT");
+    };
+  }, []);
 
   return (
     <div>
