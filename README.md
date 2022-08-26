@@ -41,7 +41,10 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 
 ### 검증
 
-4개의 상황에서 refetch가 발생하는지를 `TodoContainer + useFetchTodoList` 를 통해 검증한다.
+4개의 상황에서 refetch가 발생하는지를 `TodoContainer + useFetchTodoList(stale time이 0인 쿼리를 호출하는 커스텀 훅)` 를 통해 검증한다.
+
+
+### 결과
 
 **1. New Instance of the query mount**
 
