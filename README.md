@@ -77,5 +77,7 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 `useFetchTodoList` 훅의 stale time을 3000, refetchInterval을 3000으로 설정하여, 3초마다 stale query의 refetch 액션이 트리거되도록 환경을 구성한 후 한 번의 refetch에 stale data rendering, new data rendering이 발생하는 지를 확인한다.
 
 ### 결과
+
 한 번의 refetch(네트워크 요청)에 데이터를 렌더링하는 컴포넌트가 두 번 렌더링 되는 모습을 확인할 수 있었다. (구식 데이터로 한번, 새로운 데이터로 한번!)
+
 <img width="541" alt="image" src="https://user-images.githubusercontent.com/78349600/186855521-e32231a4-0b7c-4603-88b8-20070a0df3c6.png">
