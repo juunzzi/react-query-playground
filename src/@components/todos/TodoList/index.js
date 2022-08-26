@@ -3,6 +3,10 @@ import TodoItem from "../TodoItem";
 const TodoList = (props) => {
   const { todos } = props;
 
+  console.log("TODOLIST RERENDER");
+
+  console.log(todos);
+
   return (
     <div>
       {todos.map((todo) => (

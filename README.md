@@ -43,7 +43,6 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 
 4개의 상황에서 refetch가 발생하는지를 `TodoContainer + useFetchTodoList(stale time이 0인 쿼리를 호출하는 커스텀 훅)` 를 통해 검증한다.
 
-
 ### 결과
 
 **1. New Instance of the query mount**
@@ -62,3 +61,19 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 **4. The query is optionally configured with a refetch interval.**
 
     refetchInterval을 3000으로 두어보니 3초에 한번씩 네트워크 요청이 새롭게 발생!
+
+## 궁금증 3 : stale해진 쿼리의 refetch-rerender flow
+
+문서에 의하면 Caching Flow는 다음과 같다.
+
+쿼리가 마운트 -> 네트워크 요청하여 데이터 렌더링 -> 쿼리 인스턴스 새로이 마운트 -> 구식 쿼리 데이터 렌더링 -> 네트워크 요청 -> 쿼리 데이터 업데이트(캐시 업데이트) -> 새로운 쿼리 데이터 렌더링
+
+즉 두번째 쿼리 마운트에는 refetch 과정에서 stale 한 데이터로 인한 렌더링, new 데이터로 인한 렌더링 두번이 발생한다.
+
+이 말이 사실인지를 검증한다. 위 주장은 [이곳에서 발췌](https://tanstack.com/query/v4/docs/guides/caching?from=reactQueryV3&original=https://react-query-v3.tanstack.com/guides/caching)
+
+### 검증
+
+`useFetchTodoList` 훅의 stale time을 3000, refetchInterval을 3000으로 설정하여, 3초마다 stale query의 refetch 액션이 트리거되도록 환경을 구성한 후 한 번의 refetch에 stale data rendering, new data rendering이 발생하는 지를 확인한다.
+
+### 결과

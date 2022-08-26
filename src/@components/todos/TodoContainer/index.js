@@ -6,7 +6,7 @@ import TodoList from "../TodoList";
 const TodoContainer = () => {
   const [count, setCount] = useState(0);
 
-  const { todos } = useFetchTodoList();
+  const { todos, isStale } = useFetchTodoList();
 
   const up = () => {
     setCount((prev) => prev + 1);
@@ -17,12 +17,14 @@ const TodoContainer = () => {
   };
 
   useEffect(() => {
-    console.log("TODOCONTAINER MOUNT");
+    // console.log("TODOCONTAINER MOUNT");
 
     return () => {
-      console.log("TODOCONTAINER UNMOUNT");
+      // console.log("TODOCONTAINER UNMOUNT");
     };
   }, []);
+
+  console.log(isStale ? "구식의 쿼리 데이터" : "새로운 쿼리 데이터");
 
   return (
     <div>

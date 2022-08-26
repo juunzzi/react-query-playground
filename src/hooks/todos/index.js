@@ -4,12 +4,13 @@ import { getTodos } from "../../remote_data_fetcher/todos";
 const key = "todos";
 
 export const useFetchTodoList = () => {
-  const { data: getTodosResponse } = useQuery(key, getTodos, {
-    staleTime: 0,
+  const { data: getTodosResponse, isStale } = useQuery(key, getTodos, {
+    staleTime: 3000,
     refetchInterval: 3000,
   });
 
   return {
     todos: getTodosResponse?.data ?? [],
+    isStale,
   };
 };
