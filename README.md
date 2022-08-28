@@ -10,3 +10,5 @@
 [TL;DR - 궁금증 3 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D3.md)
 ### 🖐 궁금증 4 : useMutation의 onSuccess - mutation.mutate의 onSuccess 어떤 순서로 호출되는가? (중복은 되는가?)
 [TL;DR - 궁금증 4 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D4.md)
+### 🖐 궁금증 5 : queryClient.setQueryData의 Typing 이슈
+[TL;DR - 궁금증 5 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D5.md)
