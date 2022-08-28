@@ -8,5 +8,5 @@
 [TL;DR - 궁금증 2 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D2.md)
 ### 🖐 궁금증 3 : stale해진 쿼리의 refetch-rerender flow
 [TL;DR - 궁금증 3 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D3.md)
-### 🖐 궁금증 4 : useQuery, useMutation의 onSuccess는 중복 호출되는가?
+### 🖐 궁금증 4 : useMutation의 onSuccess - mutation.mutate의 onSuccess 어떤 순서로 호출되는가? (중복은 되는가?)
 [TL;DR - 궁금증 4 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D4.md)
