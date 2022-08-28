@@ -30,7 +30,6 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 
 ## 🖐 궁금증 2 : stale한 쿼리 refetch 액션의 트리거 조건은 무엇인가 !
 
-
 ### 커밋 및 개요
 
 [커밋은 요기!](https://github.com/juunzzi/react-query-playground/commit/7dabdeec5778b6c802a3b7a0881b1d4f7f4675f7)
@@ -94,3 +93,118 @@ TodoContainer 컴포넌트에서 테스트를 진행한다. TodoContainer 컴포
 한 번의 refetch(네트워크 요청)에 데이터를 렌더링하는 컴포넌트가 두 번 렌더링 되는 모습을 확인할 수 있었다. (구식 데이터로 한번, 새로운 데이터로 한번!)
 
 <img width="541" alt="image" src="https://user-images.githubusercontent.com/78349600/186855521-e32231a4-0b7c-4603-88b8-20070a0df3c6.png">
+
+## 🖐 궁금증 4 : useQuery, useMutation의 onSuccess는 중복 호출되는가?
+
+꼭꼭 프로젝트에서 저희는 React Query를 다음 계층구조 아래에서 활용하고 있습니다.
+
+- useQuery, useMutation 기반의 커스텀 훅 계층
+- useQuery, useMutation 기반의 커스텀 훅 계층을 사용하는 비즈니스 로직 커스텀 훅 계층
+
+이 구조에 의하면 다음과 같은 코드가 작성될 수 있습니다.
+
+```jsx
+// hooks/queries/post.js
+// useQuery, useMutation 기반의 커스텀 훅 계층입니다.
+
+import { useMutation, useQuery } from "react-query";
+import { createPost, getPosts } from "../../api/posts";
+
+const key = "posts";
+
+export const useFetchPostList = () => {
+  const { data: getPostsResponse, isStale } = useQuery(key, getPosts, {});
+
+  return {
+    posts: getPostsResponse?.data ?? [],
+    isStale,
+  };
+};
+
+export const useCreatePostMutation = () => {
+  return useMutation(createPost, {
+    onSuccess() {
+      console.log("Mutation");
+    },
+  });
+};
+```
+
+```jsx
+// hooks/post/useCreatePost.js
+// useQuery, useMutation 기반의 커스텀 훅 계층을 사용하는 비즈니스 로직 훅 계층입니다.
+
+import { useCreatePostMutation } from "../queries/post";
+
+export const useCreatePost = () => {
+  const mutation = useCreatePostMutation();
+
+  const createPost = (body) => {
+    mutation.mutate(body, {
+      onSuccess() {
+        console.log("Business");
+      },
+    });
+  };
+
+  return { createPost };
+};
+```
+
+여기서 궁금한건 두 개의 커스텀 훅에서 작성된 onSuccess 로직의 호출 순서입니다.
+
+### 검증
+
+PostContainer 컴포넌트에 createPost 기능을 수행하는 UI를 렌더링하고, 상호작용하며 실제 기능을 수행합니다. 수행 시 `log`의 호출 순서를 파악합니다.
+
+### 결과
+
+```jsx
+// hooks/queries/post.js
+// useQuery, useMutation 기반의 커스텀 훅 계층입니다.
+
+import { useMutation, useQuery } from "react-query";
+import { createPost, getPosts } from "../../api/posts";
+
+const key = "posts";
+
+export const useFetchPostList = () => {
+  const { data: getPostsResponse, isStale } = useQuery(key, getPosts, {});
+
+  return {
+    posts: getPostsResponse?.data ?? [],
+    isStale,
+  };
+};
+
+export const useCreatePostMutation = () => {
+  return useMutation(createPost, {
+    onSuccess() {
+      console.log("Mutation"); // first
+    },
+  });
+};
+```
+
+```jsx
+// hooks/post/useCreatePost.js
+// useQuery, useMutation 기반의 커스텀 훅 계층을 사용하는 비즈니스 로직 훅 계층입니다.
+
+import { useCreatePostMutation } from "../queries/post";
+
+export const useCreatePost = () => {
+  const mutation = useCreatePostMutation();
+
+  const createPost = (body) => {
+    mutation.mutate(body, {
+      onSuccess() {
+        console.log("Business"); // second
+      },
+    });
+  };
+
+  return { createPost };
+};
+```
+
+예상했던 바와 같이 useMutation의 옵션으로 들어가는 onSuccess 함수가 먼저 호출되고, useMutation()의 반환 객체의 mutate 메소드가 갖는 onSuccess 함수가 두번째로 호출되는 것을 확인할 수 있었습니다.

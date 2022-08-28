@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import TodoContainer from "../../todos/TodoContainer";
+import React from "react";
+import PostContainer from "../../todos/PostContainer";
 
 const App = () => {
-  const [isShow, setIsShow] = useState(true);
-
-  const toggle = () => {
-    setIsShow((prev) => !prev);
-  };
   return (
     <div>
-      <button onClick={toggle}>MOUNT/UNMOUNT TODOCONTAINER</button>
-      {isShow && <TodoContainer />}
+      <PostContainer />
     </div>
   );
 };
