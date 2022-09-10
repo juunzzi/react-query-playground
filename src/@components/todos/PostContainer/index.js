@@ -7,6 +7,10 @@ const PostContainer = () => {
 
   const { createPost } = useCreatePost();
 
+  const successAction = (successResponse) => {};
+
+  const failureAction = (errorResponse) => {};
+
   const onClickCreatePostButton = () => {
     const body = JSON.stringify({
       title: "foo",
@@ -14,7 +18,13 @@ const PostContainer = () => {
       userId: 1,
     });
 
-    createPost(body);
+    try {
+      const result = createPost(body);
+
+      successAction(result);
+    } catch (error) {
+      failureAction(error);
+    }
   };
 
   return (

@@ -13,9 +13,5 @@ export const useFetchPostList = () => {
 };
 
 export const useCreatePostMutation = () => {
-  return useMutation(createPost, {
-    onSuccess() {
-      console.log("Mutation"); // call first
-    },
-  });
+  return useMutation(createPost, { useErrorBoundary: false });
 };
