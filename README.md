@@ -12,3 +12,5 @@
 [TL;DR - 궁금증 4 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D4.md)
 ### 🖐 궁금증 5 : queryClient.setQueryData의 Typing 이슈
 [TL;DR - 궁금증 5 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D5.md)
+### 🖐 궁금증 6 : mutate vs mutateAsync 어떤 것을 선택해볼까나?
+[TL;DR - 궁금증 6 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D6.md)
