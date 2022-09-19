@@ -1,5 +1,5 @@
 import React from "react";
-import PostContainer from "../../todos/PostContainer";
+import PostContainer from "../../post/PostContainer";
 
 const App = () => {
   return (
