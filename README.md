@@ -28,4 +28,6 @@
 
 ### 🖐 궁금증 7 : invalidateQueries 너 여러 개의 쿼리 데이터를 갱신할 수 있어?
 
-[TL;DR - 궁금증 7 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D6.md)
+[TL;DR - 궁금증 7 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D7.md)
+
+
