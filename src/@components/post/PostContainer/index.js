@@ -1,15 +1,17 @@
+import { useQueryClient } from "react-query";
 import { useCreatePost } from "../../../hooks/post/useCreatePost";
-import { useFetchPostList } from "../../../hooks/queries/post";
+import {
+  useFetchPostList,
+  useFetchPostListSecond,
+} from "../../../hooks/queries/post";
 import PostList from "../PostList";
-
 const PostContainer = () => {
   const { posts } = useFetchPostList();
+  const { posts: postsSecond } = useFetchPostListSecond();
 
   const { createPost } = useCreatePost();
 
-  const successAction = (successResponse) => {};
-
-  const failureAction = (errorResponse) => {};
+  const queryClient = useQueryClient();
 
   const onClickCreatePostButton = () => {
     const body = JSON.stringify({
@@ -18,19 +20,16 @@ const PostContainer = () => {
       userId: 1,
     });
 
-    try {
-      const result = createPost(body);
+    const result = createPost(body);
 
-      successAction(result);
-    } catch (error) {
-      failureAction(error);
-    }
+    queryClient.invalidateQueries("posts");
   };
 
   return (
     <div>
       <button onClick={onClickCreatePostButton}>Post 생성하기</button>
       <PostList posts={posts}></PostList>
+      <PostList posts={postsSecond}></PostList>
     </div>
   );
 };
