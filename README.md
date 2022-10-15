@@ -28,7 +28,10 @@
 [TL;DR - 궁금증 2 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D2.md)
 
 
-
 #### 🖐 궁금증 1 : 단순 re-render로 인한 useQuery 훅 재호출에는 refetch(network request)가 발생하지 않는가?
 
 [TL;DR - 궁금증 1 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/%EA%B6%81%EA%B8%88%EC%A6%9D1.md)
+
+#### 🖐 궁금증 0 : 레포 생성 이전
+
+[TL;DR - 궁금증 1 정리 문서](https://github.com/juunzzi/react-query-playground/blob/main/docs/Legacy.md)
